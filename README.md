@@ -263,19 +263,41 @@ Does this app need to hash/check user passwords? (yes/no) [yes]:
 
 #### 3.1.2 Surcharge / Modification de l'entité
 
+Ajouter les propriétés :
+
 ```bash
 php bin/console make:entity Users
 ```
 
+Modifier la config de Doctrine `config/packages/doctrine.yaml` :
+
+```yaml
+doctrine:
+    dbal:
+        types:
+            uuid:  Ramsey\Uuid\Doctrine\UuidType
+```
+
+Modifier l'entité :
 
 ```php
+use Ramsey\Uuid\UuidInterface as UUID;
+// ...
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Users implements UserInterface
 // ...
-
+/**
+ * @var \Ramsey\Uuid\UuidInterface
+ *
+ * @ORM\Id
+ * @ORM\Column(type="uuid", unique=true)
+ * @ORM\GeneratedValue(strategy="CUSTOM")
+ * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+ */
+private $id;
 // ...
 /**
  * @ORM\Column(type="string", length=2, options={"fixed"=true})
@@ -283,6 +305,11 @@ class Users implements UserInterface
 private $language;
 // ...
 private $isActive = false;
+// ...
+public function getId(): ?uuid
+{
+    return $this->id;
+}
 // ...
 /**
  * @ORM\PrePersist
@@ -297,19 +324,60 @@ public function setScreenname(): self
 }
 ```
 
+### 3.2 Ads
 
-
-
-
-
-
+#### 3.2.1 Création de l'entité
 
 ```bash
 php bin/console make:entity Ads
+```
+
+### 3.3 Favorites
+
+#### 3.3.1 Création de l'entité
+
+```bash
 php bin/console make:entity Favorites
+```
+
+### 3.4 Categories
+
+#### 3.4.1 Création de l'entité
+
+```bash
 php bin/console make:entity Categories
+```
+
+### 3.5 Offers
+
+#### 3.5.1 Création de l'entité
+
+```bash
 php bin/console make:entity Offers
+```
+
+### 3.6 Medias
+
+#### 3.6.1 Création de l'entité
+
+```bash
 php bin/console make:entity Medias
+```
+
+### 3.7 Attachments
+
+#### 3.7.1 Création de l'entité
+
+```bash
 php bin/console make:entity Attachments
+```
+
+### 3.8 Addresses
+
+#### 3.8.1 Création de l'entité
+
+```bash
 php bin/console make:entity Addresses
 ```
+
+
