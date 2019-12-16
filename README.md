@@ -2,9 +2,11 @@
 > Le site de petites annonces...
 
 
-## Entités
+## 1. Préparation du projet
 
-### Users
+### 1.1 Définition des Entités
+
+#### 1.1.1 Users
 
 - id                            : uuid          : char(36)
 - email                         : string 180    : varchar(180)
@@ -23,10 +25,11 @@
 - picture                       : ManyToOne     : int(11)
 - address                       : ManyToOne     : int(11)
 
-### Ads 
+#### 1.1.2 Ads 
 
 - id                            : uuid          : char(36)
 - title                         : string 90     : varchar(90)
+- slug                          : string 90     : varchar(90)
 - price                         : decimal 10,2  : decimal(10,2)
 - description                   : text          : longtext
 - language                      : string 2      : char(2)
@@ -38,19 +41,19 @@
 - location                      : ManyToOne     : int(11)
 - attachments                   : OneToMany     : int(11)
 
-### Favorites
+#### 1.1.3 Favorites
 
 - user                          : ManyToOne     : char(36)
 - ad                            : ManyToOne     : char(36)
 
-### Categories
+#### 1.1.4 Categories
 
 - id                            :               : int(11)
 - name                          : string 30     : varchar(30)
 - slug                          : string 30     : varchar(30)
 - color                         : string 7      : char(7)
 
-### Offers
+#### 1.1.5 Offers
 
 - id                            :               : int(11)
 - user                          : ManyToOne     : char(36)
@@ -59,21 +62,21 @@
 - message                       : text          : text
 - offerDate                     : datetime      : datetime
 
-### Medias
+#### 1.1.6 Medias
 
 - id                            :               : int(11)
 - type                          : string xxx    : enum('image','video','sound')
 - path                          : string 40     : varchar(40)
 - user                          : ManyToOne     : char(36)
 
-### Attachements
+#### 1.1.7 Attachements
 
 - id                            :               : int(11)
 - media                         : ManyToOne     : char(36)
 - ad                            : ManyToOne     : char(36)
 - title                         : string 80     : varchar(80)
 
-### Addresses
+#### 1.1.8 Addresses
 
 - id                            :               : int(11)
 - address                       : string 255    : varchar(255)
@@ -84,11 +87,9 @@
 - country                       : string 2      : char(2)
 
 
+### 1.2 Router
 
-
-
-## Router
-
+```txt
 Homepage :              /
 Ads :                   /
 Ads (by category) :     /?categ=categ-slug
@@ -111,20 +112,21 @@ User favorites :        /favorites
 
 Terms :                 /legal
 Contact :               /contact
+```
 
 
-## Installation du projet
+## 2. Installation du projet
 
-### Installation de la base Symfony
+### 2.1 Installation de la base Symfony
 
 ```bash
 composer create-project symfony/skeleton <my-project> "4.4.*"
 cd <my-project>
 ```
 
-### Installation des dépendances
+### 2.2 Installation des dépendances
 
-#### Installation des dépendances Back
+#### 2.2.1 Installation des dépendances Back
 
 ```bash
 composer require symfony/web-server-bundle --dev
@@ -152,7 +154,7 @@ composer require symfony/framework-bundle
 composer require symfony/yaml
 ```
 
-#### Installation des dépendances Front
+#### 2.2.2 Installation des dépendances Front
 
 ```bash
 npm install bootstrap
@@ -160,19 +162,25 @@ npm install jquery
 npm install popper.js
 ```
 
-### Mise en place de l'environnement VSCode
+#### 2.2.3 Installation de Yarn
+
+```bash
+yarn install
+```
+
+#### 2.2.4 Mise en place de l'environnement VSCode
 
 1. Ouverture du répertoire **my-project** en mode projet sur VSCode.
 2. Configuration de Debugger For Chrome
 
-### Test du serveur de développement
+#### 2.2.5 Test du serveur de développement
 
 ```bash
 php bin/console server:run *:8004
 ```
 
 
-### Création de la copie `.env.dist`
+#### 2.2.6 Création de la copie `.env.dist`
 
 Pour Unix :
 
@@ -187,21 +195,21 @@ copy .env .env.dist
 ```
 
 
-### Initialisation de GIT
+### 2.3 Initialisation de GIT
 
-#### Initialisation de GIT
+#### 2.3.1 Initialisation de GIT
 
 ```bash
 git init
 ```
 
-#### Ignorer les fichiers pour GIT
+#### 2.3.2 Ignorer les fichiers pour GIT
 
 Dans le fichier `.gitignore`, ajouter :
 - `.env`
 
 
-#### Préparer le remote (GitHub)
+#### 2.3.3 Préparer le remote (GitHub)
 
 1. Identifiez-vous sur https://github.com/
 2. Créez nouveau dépôt
@@ -216,3 +224,92 @@ Dans le fichier `.gitignore`, ajouter :
     - `git commit -m 'initial commit'`
     - `git remote add origin https://github.com/<USER>/<repository>.git`
     - `git push --set-upstream origin develop`
+
+
+### 2.4 Installation de la base de données
+
+#### 2.4.1 Configuration du fichier `.env`
+
+_!!! Attention à votre version de SQL !!!_
+
+```yaml
+DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7
+```
+
+#### 2.4.2
+
+```bash
+php bin/console doctrine:database:create
+```
+
+## 3. Création des entités
+
+### 3.1 Users
+
+#### 3.1.1 Création de l'entité
+
+```bash
+php bin/console make:user Users
+```
+
+Repondre au question du terminal :
+
+```
+The name of the security user class (e.g. User) [User]: Users
+Do you want to store user data in the database (via Doctrine)? (yes/no) [yes]:
+Enter a property name that will be the unique "display" name for the user (e.g. email, username, uuid) [email]:
+Does this app need to hash/check user passwords? (yes/no) [yes]:
+```
+
+#### 3.1.2 Surcharge / Modification de l'entité
+
+```bash
+php bin/console make:entity Users
+```
+
+
+```php
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class Users implements UserInterface
+// ...
+
+// ...
+/**
+ * @ORM\Column(type="string", length=2, options={"fixed"=true})
+ */
+private $language;
+// ...
+private $isActive = false;
+// ...
+/**
+ * @ORM\PrePersist
+ */
+public function setScreenname(): self
+{
+    $this->screenname = $this->firstname;
+    $this->screenname.= " ";
+    $this->screenname.= substr($this->lastname, 0, 1).".";
+
+    return $this;
+}
+```
+
+
+
+
+
+
+
+
+```bash
+php bin/console make:entity Ads
+php bin/console make:entity Favorites
+php bin/console make:entity Categories
+php bin/console make:entity Offers
+php bin/console make:entity Medias
+php bin/console make:entity Attachments
+php bin/console make:entity Addresses
+```
