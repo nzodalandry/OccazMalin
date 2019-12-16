@@ -46,6 +46,8 @@
 - user                          : ManyToOne     : char(36)
 - ad                            : ManyToOne     : char(36)
 
+La table Favorites est en réalité une relation **ManyToMany** entre **Users** et **Ads**
+
 #### 1.1.4 Categories
 
 - id                            :               : int(11)
@@ -67,7 +69,7 @@
 - id                            :               : int(11)
 - type                          : string xxx    : enum('image','video','sound')
 - path                          : string 40     : varchar(40)
-- user                          : ManyToOne     : char(36)
+- createdBy                     : ManyToOne     : char(36)
 
 #### 1.1.7 Attachements
 
@@ -75,6 +77,8 @@
 - media                         : ManyToOne     : char(36)
 - ad                            : ManyToOne     : char(36)
 - title                         : string 80     : varchar(80)
+
+La table Attachements est en réalité une relation **ManyToMany** entre **Medias** et **Ads**
 
 #### 1.1.8 Addresses
 
@@ -129,6 +133,14 @@ cd <my-project>
 #### 2.2.1 Installation des dépendances Back
 
 ```bash
+composer require symfony/flex
+composer require symfony/console
+composer require symfony/dotenv
+composer require symfony/framework-bundle
+composer require symfony/yaml
+```
+
+```bash
 composer require symfony/web-server-bundle --dev
 composer require symfony/maker-bundle --dev
 composer require doctrine/doctrine-fixtures-bundle --dev 
@@ -144,14 +156,8 @@ composer require security
 composer require symfony/translation
 composer require encore
 composer require claviska/simpleimage
-composer require cocur/slugify
+composer require gedmo/doctrine-extensions
 composer require ramsey/uuid-doctrine
-
-composer require symfony/flex
-composer require symfony/console
-composer require symfony/dotenv
-composer require symfony/framework-bundle
-composer require symfony/yaml
 ```
 
 #### 2.2.2 Installation des dépendances Front

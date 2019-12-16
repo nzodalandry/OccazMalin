@@ -6,7 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "claviska/simpleimage": "^3.3",
-        "cocur/slugify": "^4.0",
+        "gedmo/doctrine-extensions": "^2.4",
         "ramsey/uuid-doctrine": "^1.5",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/console": "4.4.*",

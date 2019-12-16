@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface as UUID;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -87,6 +89,29 @@ class Users implements UserInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $passwordTokenExpiration;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ads", mappedBy="createdBy", orphanRemoval=true)
+     */
+    private $ads;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Ads")
+     * @ORM\JoinTable(name="favorites")
+     */
+    private $favorites;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Offers", mappedBy="user", orphanRemoval=true)
+     */
+    private $offers;
+
+    public function __construct()
+    {
+        $this->ads = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
+        $this->offers = new ArrayCollection();
+    }
 
     public function getId(): ?uuid
     {
@@ -287,6 +312,94 @@ class Users implements UserInterface
     public function setPasswordTokenExpiration(?\DateTimeInterface $passwordTokenExpiration): self
     {
         $this->passwordTokenExpiration = $passwordTokenExpiration;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ads[]
+     */
+    public function getAds(): Collection
+    {
+        return $this->ads;
+    }
+
+    public function addAd(Ads $ad): self
+    {
+        if (!$this->ads->contains($ad)) {
+            $this->ads[] = $ad;
+            $ad->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAd(Ads $ad): self
+    {
+        if ($this->ads->contains($ad)) {
+            $this->ads->removeElement($ad);
+            // set the owning side to null (unless already changed)
+            if ($ad->getCreatedBy() === $this) {
+                $ad->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ads[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Ads $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Ads $favorite): self
+    {
+        if ($this->favorites->contains($favorite)) {
+            $this->favorites->removeElement($favorite);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offers[]
+     */
+    public function getOffers(): Collection
+    {
+        return $this->offers;
+    }
+
+    public function addOffer(Offers $offer): self
+    {
+        if (!$this->offers->contains($offer)) {
+            $this->offers[] = $offer;
+            $offer->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffer(Offers $offer): self
+    {
+        if ($this->offers->contains($offer)) {
+            $this->offers->removeElement($offer);
+            // set the owning side to null (unless already changed)
+            if ($offer->getUser() === $this) {
+                $offer->setUser(null);
+            }
+        }
 
         return $this;
     }
