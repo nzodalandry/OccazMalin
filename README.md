@@ -71,14 +71,15 @@ La table Favorites est en réalité une relation **ManyToMany** entre **Users** 
 - path                          : string 40     : varchar(40)
 - createdBy                     : ManyToOne     : char(36)
 
-#### 1.1.7 Attachements
+#### 1.1.7 Attachments
 
 - id                            :               : int(11)
 - media                         : ManyToOne     : char(36)
 - ad                            : ManyToOne     : char(36)
 - title                         : string 80     : varchar(80)
 
-La table Attachements est en réalité une relation **ManyToMany** entre **Medias** et **Ads**
+La table Attachments est en réalité une relation **ManyToMany** entre **Medias** et **Ads**
+Mais la table Attachments possède un champ additionnel... il convient donc de créer une entité dédiée à la relation entre **Medias** et **Ads**
 
 #### 1.1.8 Addresses
 

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -24,7 +26,7 @@ class Categories
 
     /**
      * @ORM\Column(type="string", length=30)
-     * @ORM\Column(type="name")
+     * @Gedmo\Slug(fields={"name"})
      */
     private $slug;
 
@@ -32,6 +34,16 @@ class Categories
      * @ORM\Column(type="string", length=7, options={"fixed"=true})
      */
     private $color;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ads", mappedBy="category")
+     */
+    private $ads;
+
+    public function __construct()
+    {
+        $this->ads = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,6 +82,37 @@ class Categories
     public function setColor(string $color): self
     {
         $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ads[]
+     */
+    public function getAds(): Collection
+    {
+        return $this->ads;
+    }
+
+    public function addAd(Ads $ad): self
+    {
+        if (!$this->ads->contains($ad)) {
+            $this->ads[] = $ad;
+            $ad->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAd(Ads $ad): self
+    {
+        if ($this->ads->contains($ad)) {
+            $this->ads->removeElement($ad);
+            // set the owning side to null (unless already changed)
+            if ($ad->getCategory() === $this) {
+                $ad->setCategory(null);
+            }
+        }
 
         return $this;
     }

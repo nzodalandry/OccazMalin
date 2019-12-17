@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface as UUID;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdsRepository")
@@ -30,6 +31,7 @@ class Ads
 
     /**
      * @ORM\Column(type="string", length=90)
+     * @Gedmo\Slug(fields={"title"})
      */
     private $slug;
 
@@ -53,6 +55,11 @@ class Ads
      */
     private $state;
 
+
+    /**
+     * Dates
+     */
+
     /**
      * @ORM\Column(type="datetime")
      */
@@ -63,11 +70,28 @@ class Ads
      */
     private $dateExpire;
 
+
+    /**
+     * Relationship
+     */
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="ads")
      * @ORM\JoinColumn(nullable=false)
      */
     private $createdBy;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categories", inversedBy="ads")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Addresses")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $location;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Offers", mappedBy="ad", orphanRemoval=true)
@@ -259,6 +283,30 @@ class Ads
                 $attachment->setAd(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Categories
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Categories $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getLocation(): ?Addresses
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?Addresses $location): self
+    {
+        $this->location = $location;
 
         return $this;
     }

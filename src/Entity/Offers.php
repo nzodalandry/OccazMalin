@@ -31,6 +31,11 @@ class Offers
      */
     private $offerDare;
 
+
+    /**
+     * Relationship
+     */
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="offers")
      * @ORM\JoinColumn(nullable=false)

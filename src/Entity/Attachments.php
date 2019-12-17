@@ -20,6 +20,11 @@ class Attachments
      * @ORM\Column(type="string", length=80, nullable=true)
      */
     private $title;
+    
+
+    /**
+     * Relationship
+     */
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Medias")

@@ -70,10 +70,20 @@ class Users implements UserInterface
      */
     private $language;
 
+    
+    /**
+     * Flags
+     */
+
     /**
      * @ORM\Column(type="boolean")
      */
     private $isActive = false;
+
+    
+    /**
+     * Tokens
+     */
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -90,10 +100,10 @@ class Users implements UserInterface
      */
     private $passwordTokenExpiration;
 
+
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Ads", mappedBy="createdBy", orphanRemoval=true)
+     * Relationship
      */
-    private $ads;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Ads")
@@ -102,14 +112,29 @@ class Users implements UserInterface
     private $favorites;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Medias", inversedBy="users")
+     */
+    private $picture;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Addresses")
+     */
+    private $address;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ads", mappedBy="createdBy", orphanRemoval=true)
+     */
+    private $ads;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Offers", mappedBy="user", orphanRemoval=true)
      */
     private $offers;
 
     public function __construct()
     {
-        $this->ads = new ArrayCollection();
         $this->favorites = new ArrayCollection();
+        $this->ads = new ArrayCollection();
         $this->offers = new ArrayCollection();
     }
 
@@ -400,6 +425,30 @@ class Users implements UserInterface
                 $offer->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPicture(): ?Medias
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?Medias $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getAddress(): ?Addresses
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Addresses $address): self
+    {
+        $this->address = $address;
 
         return $this;
     }
