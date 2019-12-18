@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% set title = "Ads (update)" %}
+{% block title title %}
+
+{% block body %}
+<div class="container">
+    <div class="page-header">
+        <h1>{{ title }}</h1>
+    </div>
+
+    {% include "ads/form.html.twig" %}
+</div>
+{% endblock %}

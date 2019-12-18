@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% set title = "Terms of use" %}
+{% block title title %}
+
+{% block body %}
+<div class="container">
+    <div class="page-header">
+        <h1>{{ title }}</h1>
+    </div>
+
+    {% for i in 0..6 %} 
+        <h3>Article {{loop.index}}</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae debitis officiis dolores harum quo temporibus veniam et ipsam, sed quia vero veritatis ad, possimus autem fugit at, delectus quasi est?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae debitis officiis dolores harum quo temporibus veniam et ipsam, sed quia vero veritatis ad, possimus autem fugit at, delectus quasi est?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae debitis officiis dolores harum quo temporibus veniam et ipsam, sed quia vero veritatis ad, possimus autem fugit at, delectus quasi est?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae debitis officiis dolores harum quo temporibus veniam et ipsam, sed quia vero veritatis ad, possimus autem fugit at, delectus quasi est?</p>
+    {% endfor %}
+
+</div>
+{% endblock %}
