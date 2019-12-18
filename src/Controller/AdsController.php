@@ -19,7 +19,11 @@ class AdsController extends AbstractController
     {
         $ads = $adsRepository->findAll();
 
-        dd( $languages->getMainLocale() );
+        dump( "getAcceptedLanguages", $languages->getAcceptedLanguages() );
+        dump( "getMainLanguage", $languages->getMainLanguage() );
+        dump( "getMainLocale", $languages->getMainLocale() );
+        dump( "getMainRegion", $languages->getMainRegion() );
+        exit;
 
         return $this->render('ads/index.html.twig', [
             'ads' => $ads
