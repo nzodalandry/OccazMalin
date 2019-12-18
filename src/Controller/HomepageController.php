@@ -10,8 +10,15 @@ class HomepageController extends AbstractController
     /**
      * @Route("/", name="homepage", methods={"HEAD","GET"})
      */
-    public function index()
+    public function index(LanguagesService $languages)
     {
+
+        // dump( "getAcceptedLanguages", $languages->getAcceptedLanguages() );
+        // dump( "getMainLanguage", $languages->getMainLanguage() );
+        // dump( "getMainLocale", $languages->getMainLocale() );
+        // dump( "getMainRegion", $languages->getMainRegion() );
+        // exit;
+
         return $this->redirectToRoute('ads:index');
     }
     /**

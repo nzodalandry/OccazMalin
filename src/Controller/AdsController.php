@@ -15,15 +15,9 @@ class AdsController extends AbstractController
     /**
      * @Route("s", name=":index", methods={"HEAD","GET"})
      */
-    public function index(AdsRepository $adsRepository, LanguagesService $languages)
+    public function index(AdsRepository $adsRepository)
     {
         $ads = $adsRepository->findAll();
-
-        dump( "getAcceptedLanguages", $languages->getAcceptedLanguages() );
-        dump( "getMainLanguage", $languages->getMainLanguage() );
-        dump( "getMainLocale", $languages->getMainLocale() );
-        dump( "getMainRegion", $languages->getMainRegion() );
-        exit;
 
         return $this->render('ads/index.html.twig', [
             'ads' => $ads
