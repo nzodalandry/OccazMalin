@@ -56,15 +56,9 @@
                                     <a class="nav-link" href="#">Inscription</a>
                                 </li> #}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Connexion</a>
+                                    <a class="nav-link" href="{{ path('login') }}">Connexion</a>
                                 </li>
                             {% endif %}
-
-
-
-
-
-
 
                         </ul>
     
@@ -73,6 +67,18 @@
             </div>
         </header>
         {% endblock %}
+
+        {% for status, messages in app.flashes %}
+        <div class="container">
+            <div class="alert alert-{{ status }}">
+                <ul class="list-unstyled mb-0">
+                    {% for message in messages %}
+                    <li>{{ message | raw }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
 
         {% block body %}{% endblock %}
 

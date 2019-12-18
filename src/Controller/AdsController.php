@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\AdsRepository;
+use App\Services\LanguagesService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,9 +15,11 @@ class AdsController extends AbstractController
     /**
      * @Route("s", name=":index", methods={"HEAD","GET"})
      */
-    public function index(AdsRepository $adsRepository)
+    public function index(AdsRepository $adsRepository, LanguagesService $languages)
     {
         $ads = $adsRepository->findAll();
+
+        dd( $languages->getMainLocale() );
 
         return $this->render('ads/index.html.twig', [
             'ads' => $ads
@@ -28,6 +31,16 @@ class AdsController extends AbstractController
      */
     public function create()
     {
+        // Check authenticated user
+        $user = $this->getUser();
+
+        if (null === $user)
+        {
+            $this->addFlash('warning', "You must be loged to create a new ad !");
+            return $this->redirectToRoute('login');
+        }
+
+
         return $this->render('ads/create.html.twig', [
         ]);
     }
