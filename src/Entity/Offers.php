@@ -29,7 +29,7 @@ class Offers
     /**
      * @ORM\Column(type="datetime")
      */
-    private $offerDare;
+    private $offerDate;
 
 
     /**
@@ -77,14 +77,14 @@ class Offers
         return $this;
     }
 
-    public function getOfferDare(): ?\DateTimeInterface
+    public function getOfferDate(): ?\DateTimeInterface
     {
-        return $this->offerDare;
+        return $this->offerDate;
     }
 
-    public function setOfferDare(\DateTimeInterface $offerDare): self
+    public function setOfferDate(\DateTimeInterface $offerDate): self
     {
-        $this->offerDare = $offerDare;
+        $this->offerDate = $offerDate;
 
         return $this;
     }

@@ -554,7 +554,7 @@ php bin/console make:entity Users
 
 | Propriété     | Relation      | Classes           | Nullable | access/update |
 |---------------|---------------|-------------------|----------|---------------|
-| `favorites`   | `ManyToMany`  | `Ads`             |          | no            |
+| `favorites`   | `ManyToMany`  | `Ads`             | no       | no            |
 | `picture`     | `ManyToOne`   | `Medias`          | yes      | yes > users   |
 | `address`     | `ManyToOne`   | `Addresses`       | yes      | no            |
 

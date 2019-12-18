@@ -12,6 +12,7 @@ class LocalesExtension extends AbstractExtension
 {
     private $locales;
     private $params;
+    private $localeCodes;
 
     public function __construct(ParameterBagInterface $params)
     {
@@ -42,7 +43,10 @@ class LocalesExtension extends AbstractExtension
  
         $this->locales = [];
         foreach ($this->localeCodes as $localeCode) {
-            $this->locales[] = ['code' => $localeCode, 'name' => Intl::getLocaleBundle()->getLocaleName($localeCode, $localeCode)];
+            $this->locales[] = [
+                'code' => $localeCode, 
+                'name' => ucfirst(Intl::getLocaleBundle()->getLocaleName($localeCode, $localeCode))
+            ];
         }
  
         return $this->locales;

@@ -105,7 +105,7 @@
                                         Languages : {{ app.request.locale }}
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        {% for locale in locales(locales) %}                                            
+                                        {% for locale in locales() %}                                            
                                         <a class="dropdown-item" href="#">{{ locale.code }} - {{ locale.name }}</a>
                                         {% endfor %}
                                     </div>

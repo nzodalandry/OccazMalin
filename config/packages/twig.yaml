@@ -6,4 +6,3 @@ twig:
 
     globals:
         appTitle: '%appTitle%'
-        locales: '%locales%'

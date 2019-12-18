@@ -39,11 +39,6 @@ class Medias
      */
     private $createdBy;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Users", mappedBy="picture")
-     */
-    private $users;
-
     public function __construct()
     {
         $this->users = new ArrayCollection();
