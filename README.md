@@ -536,4 +536,81 @@ Dans le fichier `src/Entity/Addresses.php` :
 
 ## 4. Ajout des relations
 
-Création des relations
+Occupons nous des relations `OneToOne`, `ManyToOne` et `ManyToMany`.  
+Les relations `OneToMany` seront gérée automatiquement par symfony lors de la création d'une relation `ManyToOne`
+
+
+### 4.1 Les relations de l'entité `Users`
+
+#### 4.1.1 Ajouter les relations
+
+- favorites
+- picture
+- address
+
+```bash
+php bin/console make:entity Users
+```
+
+| Propriété     | Relation      | Classes           | Nullable | access/update |
+|---------------|---------------|-------------------|----------|---------------|
+| `favorites`   | `ManyToMany`  | `Ads`             |          | no            |
+| `picture`     | `ManyToOne`   | `Medias`          | yes      | yes > users   |
+| `address`     | `ManyToOne`   | `Addresses`       | yes      | no            |
+
+#### 4.1.2 Modifier les annotations
+
+1. Ajouter l'annotation `JoinTable` qui permet de definir le nom de la table de liaison.
+    ```php
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Ads")
+     * @ORM\JoinTable(name="favorites")
+     */
+    private $favorites;
+    ```
+
+
+### 4.2 Les relations de l'entité `Ads`
+
+#### 4.2.1 Ajouter les relations
+
+- createdBy
+- category
+- location
+
+```bash
+php bin/console make:entity Ads
+```
+
+| Propriété     | Relation      | Classes           | Nullable | access/update |
+|---------------|---------------|-------------------|----------|---------------|
+| `createdBy`   | `ManyToOne`   | `Users`           | no       | yes > ads     |
+| `category`    | `ManyToOne`   | `Categories`      | no       | yes > ads     |
+| `location`    | `ManyToOne`   | `Addresses`       | no       | no            |
+
+
+### 4.3 Les relations de l'entité `Offers`
+
+#### 4.3.1 Ajouter les relations
+
+```bash
+php bin/console make:entity Offers
+```
+
+
+### 4.4 Les relations de l'entité `Medias`
+
+#### 4.4.1 Ajouter les relations
+
+```bash
+php bin/console make:entity Medias
+```
+
+
+### 4.5 Les relations de l'entité `Attachments`
+
+#### 4.5.1 Ajouter les relations
+
+```bash
+php bin/console make:entity Attachments
+```

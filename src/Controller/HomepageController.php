@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Services\LanguagesService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,7 +13,6 @@ class HomepageController extends AbstractController
      */
     public function index(LanguagesService $languages)
     {
-
         // dump( "getAcceptedLanguages", $languages->getAcceptedLanguages() );
         // dump( "getMainLanguage", $languages->getMainLanguage() );
         // dump( "getMainLocale", $languages->getMainLocale() );

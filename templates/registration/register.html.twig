@@ -13,22 +13,39 @@
         {{ form_start(registrationForm) }}
 
             <div class="form-group">
-                {{ form_label(registrationForm.email) }}
+                {{ form_errors(registrationForm.firstname) }}
+                {{ form_widget(registrationForm.firstname) }}
+            </div>
+            <div class="form-group">
+                {{ form_errors(registrationForm.lastname) }}
+                {{ form_widget(registrationForm.lastname) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(registrationForm.birthday) }}
+                {{ form_errors(registrationForm.birthday) }}
+                {{ form_widget(registrationForm.birthday.day) }}
+                {{ form_widget(registrationForm.birthday.month) }}
+                {{ form_widget(registrationForm.birthday.year) }}
+            </div>
+            <div class="form-group">
                 {{ form_errors(registrationForm.email) }}
                 {{ form_widget(registrationForm.email) }}
             </div>
             <div class="form-group">
-                {{ form_label(registrationForm.plainPassword) }}
-                {{ form_errors(registrationForm.plainPassword) }}
-                {{ form_widget(registrationForm.plainPassword) }}
+                {{ form_errors(registrationForm.password.first) }}
+                {{ form_widget(registrationForm.password.first) }}
             </div>
             <div class="form-group">
-                {{ form_label(registrationForm.agreeTerms) }}
+                {{ form_errors(registrationForm.password.second) }}
+                {{ form_widget(registrationForm.password.second) }}
+            </div>
+            <div class="form-group">
                 {{ form_errors(registrationForm.agreeTerms) }}
                 {{ form_widget(registrationForm.agreeTerms) }}
+                {{ form_label(registrationForm.agreeTerms) }}
             </div>
         
-            <button class="btn">Register</button>
+            <button class="btn btn-primary btn-xs">Register</button>
         {{ form_end(registrationForm) }}
 
     </div>
