@@ -95,8 +95,11 @@ Nous devons donc ajouter les données dans la base de données dans l'ordre suiv
 3. Annonces
 
 
-#### 6.4.1 Création de la fixtures
+#### 6.4.1 `CategoriesFixtures`
 
+> source : [src/DataFixtures/CategoriesFixtures.php](src/DataFixtures/CategoriesFixtures.php)
+
+##### 6.4.1.1 Création de la fixture
 Création des fixtures pour les catégories.
 
 ```bash
@@ -107,7 +110,7 @@ La commande crée le fichier :
 
 - `created: src/DataFixtures/CategoriesFixtures.php`
 
-#### 6.4.2 Import des classes
+##### 6.4.1.2 Import des classes
 
 Importer l'entité `Categories`
 
@@ -115,7 +118,7 @@ Importer l'entité `Categories`
 use App\Entity\Categories;
 ```
 
-#### 6.4.3. Définitions des données
+##### 6.4.1.3. Définitions des données
 
 ```php
 const CATEGORIES = [
@@ -126,7 +129,7 @@ const CATEGORIES = [
 ];
 ```
 
-#### 6.4.4. Création des entités
+##### 6.4.1.4. Création des entités
 
 Dans la méthodes `load`, on boucle sur la liste des categories, puis on affecte les valeurs aux propriétés de l'entité.
 
@@ -145,7 +148,7 @@ public function load(ObjectManager $manager)
 }
 ```
 
-#### 6.4.5 Classes parent et interface
+##### 6.4.1.5 Classes parent et interface
 
 Modifier la classe parent `AbstractFixture` et implémenter l'interface `OrderedFixtureInterface`.
 
@@ -157,7 +160,7 @@ class CategoriesFixtures extends AbstractFixture implements OrderedFixtureInterf
 // ...
 ```
 
-#### 6.4.6 Definir des références
+##### 6.4.1.6 Definir des références
 
 Les référence permettent de retrouver l'entité dans d'autres fixtures.
 
@@ -174,7 +177,7 @@ foreach (self::CATEGORIES as $key => $value)
 }
 ```
 
-#### 6.4.7 Definir l'ordre d'execution des fixtures
+##### 6.4.1.7 Definir l'ordre d'execution des fixtures
 
 L'implémentation de l'inteface `OrderedFixtureInterface` nous impose d'ajouter la méthode `getOrder`.  
 
