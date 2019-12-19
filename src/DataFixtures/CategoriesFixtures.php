@@ -4,10 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Categories;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class CategoriesFixtures extends AbstractFixture implements OrderedFixtureInterface
+class CategoriesFixtures extends Fixture implements OrderedFixtureInterface
 {
     const CATEGORIES = [
         ["Immobilier", "#00FF00"],

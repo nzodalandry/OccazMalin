@@ -37,7 +37,7 @@ class Addresses
     private $city;
 
     /**
-     * @ORM\Column(type="string", length=80)
+     * @ORM\Column(type="string", length=80, nullable=true)
      */
     private $region;
 

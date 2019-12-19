@@ -9,6 +9,13 @@
         <h1>{{ title }}</h1>
     </div>
 
+    {% for ad in ads %}
+    <div>
+        {{ ad.title }} <br>
+        {{ ad.createdBy.screenname }} <br>
+    </div>
+    <hr>
+    {% endfor %}
     
 </div>
 {% endblock %}

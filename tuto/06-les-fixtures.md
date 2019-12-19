@@ -83,6 +83,8 @@ Attention, les données de la base de données seront ré-initialisées.
 
 ### 6.4. Création des Fixtures avec relations
 
+
+
 #### 6.4.1 Création de la fixtures
 
 Création des fixtures pour les catégories.
