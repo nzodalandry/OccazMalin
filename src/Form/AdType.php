@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Ads;
+use App\Form\Enum\AdsStateEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -78,6 +79,8 @@ class AdType extends AbstractType
             ->add('state', ChoiceType::class, [
                 'label' => "Object state",
                 'help' => "xxx",
+
+                'choices' => array_flip(AdsStateEnum::getAvailableStates()),
                 
                 'required' => true,
 

@@ -57,14 +57,6 @@ class AdsController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $ad = new Ads;
 
-        // $metadata = $em->getClassMetadata('App\Entity\Ads');
-        // $propertyMapping = $metadata->getAssociationMappedByTargetField();
-        // // $propertyMapping = $metadata->getFieldNames();
-        // // getFieldMapping('myProperty');
-
-        // dd($propertyMapping);
-
-
 
         // 4. Create Form
         // --
