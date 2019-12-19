@@ -57,16 +57,29 @@ yarn install
 ```
 
 
-### 3.3 Initialisation de GIT
+### 3.3 Configuration des bundles
 
-#### 3.3.1 Initialisation de GIT
+#### 3.3.1 `stof/doctrine-extensions-bundle`
+
+```yaml
+stof_doctrine_extensions:
+    default_locale: en
+    orm:
+        default:
+            sluggable: true
+```
+
+
+### 3.4 Initialisation de GIT
+
+#### 3.4.1 Initialisation de GIT
 
 ```bash
 git init
 ```
 
 
-#### 3.3.2 Création de la copie du fichier d'environement
+#### 3.4.2 Création de la copie du fichier d'environement
 
 Pour Unix :
 
@@ -81,13 +94,13 @@ copy .env .env.dist
 ```
 
 
-#### 3.3.3 Ignorer les fichiers pour GIT
+#### 3.4.3 Ignorer les fichiers pour GIT
 
 Dans le fichier `.gitignore`, ajouter :
 - `.env`
 
 
-#### 3.3.4 Préparer le remote (GitHub)
+#### 3.4.4 Préparer le remote (GitHub)
 
 1. Identifiez-vous sur https://github.com/
 2. Créez nouveau dépôt
