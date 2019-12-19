@@ -1,11 +1,18 @@
 # OccazMalin
-> Le site de petites annonces...
+> Site de petites annonces
 
-## 3. Création des entités
+## 5. Création des entités
 
-### 3.1 Users
+- Base des entités
+- Les relations
 
-#### 3.1.1 Création de l'entité
+
+## 5.1. Base des entités
+
+
+### 5.1.1 Users
+
+#### 5.1.1.1 Création de l'entité
 
 ```bash
 php bin/console make:user Users
@@ -20,9 +27,9 @@ Enter a property name that will be the unique "display" name for the user (e.g. 
 Does this app need to hash/check user passwords? (yes/no) [yes]:
 ```
 
-#### 3.1.2 Modification de l'entité
+#### 5.1.1.2 Modification de l'entité
 
-##### 3.1.2.1 Ajouter les propriétés
+##### 5.1.1.2.1 Ajouter les propriétés
 
 - firstname
 - lastname
@@ -39,7 +46,7 @@ Does this app need to hash/check user passwords? (yes/no) [yes]:
 php bin/console make:entity Users
 ```
 
-##### 3.1.2.2 Modifier les annotations et méthodes
+##### 5.1.1.2.2 Modifier les annotations et méthodes
 
 Dans le fichier `src/Entity/Users.php` :
 
@@ -286,6 +293,19 @@ Dans le fichier `src/Entity/Addresses.php` :
     ```
 
 
+
+
+
+
+
+
+
+
+### 5.2. Les relations
+
+
+
+
 ## 4. Ajout des relations
 
 Occupons nous des relations `OneToOne`, `ManyToOne` et `ManyToMany`.  
@@ -366,3 +386,10 @@ php bin/console make:entity Medias
 ```bash
 php bin/console make:entity Attachments
 ```
+
+
+
+<hr>
+
+- [Tuto](./README.md)
+- << [Mise en place de l'environnement de développement](04-mise-en-place-de-lenvironnement-de-dev.md)

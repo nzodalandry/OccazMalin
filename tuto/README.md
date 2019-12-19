@@ -5,3 +5,4 @@
 2. [Définition des spécifications technique](./02-definition-des-specifications-technique.md)
 3. [Installation du projet](03-installation-du-projet.md)
 4. [Mise en place de l'environnement de développement](04-mise-en-place-de-lenvironnement-de-dev.md)
+5. [Création des entités](05-creation-des-entites.md)

@@ -34,3 +34,5 @@ php bin/console server:run *:8080
 <hr>
 
 - [Tuto](./README.md)
+- << [Installation du projet](03-installation-du-projet.md)
+- \>> [Création des entités](05-creation-des-entites.md)
