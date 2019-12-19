@@ -83,6 +83,16 @@ Attention, les données de la base de données seront ré-initialisées.
 
 ### 6.4. Création des Fixtures avec relations
 
+Rappel de la logique des relations
+
+- Les annonces dépendent des **utilisateurs** (`createdBy`), des **catégories** et **adresses** (`location`).
+- Les **utilisateurs** peuvent dépendres des **adresses**.
+
+Nous devons donc ajouter les données dans la base de données dans l'ordre suivant :
+
+1. Catégories et Adresses
+2. Utilisateurs
+3. Annonces
 
 
 #### 6.4.1 Création de la fixtures
