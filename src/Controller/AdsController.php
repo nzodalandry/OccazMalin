@@ -48,15 +48,25 @@ class AdsController extends AbstractController
         // 2. Check user address
         // --
 
-        dd($user->getAddress());
+        // dd($user->getAddress());
 
-        // 2. Retrieve Entities
+
+        // 3. Retrieve Entities
         // --
 
+        $em = $this->getDoctrine()->getManager();
         $ad = new Ads;
 
+        // $metadata = $em->getClassMetadata('App\Entity\Ads');
+        // $propertyMapping = $metadata->getAssociationMappedByTargetField();
+        // // $propertyMapping = $metadata->getFieldNames();
+        // // getFieldMapping('myProperty');
 
-        // 3. Create Form
+        // dd($propertyMapping);
+
+
+
+        // 4. Create Form
         // --
 
         // Init the form $errors array
@@ -77,7 +87,7 @@ class AdsController extends AbstractController
             // If the form is valid
             if ($form->isValid()) 
             {
-                $em = $this->getDoctrine()->getManager();
+                // $em = $this->getDoctrine()->getManager();
 
                 // Set properties not defined by the form
                 $ad->setLanguage( $user->getLanguage() );

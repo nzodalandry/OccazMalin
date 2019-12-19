@@ -99,6 +99,7 @@ Nous devons donc ajouter les données dans la base de données dans l'ordre suiv
 
 > source : [src/DataFixtures/CategoriesFixtures.php](./../src/DataFixtures/CategoriesFixtures.php)
 
+
 ##### 6.4.1.1 Création de la fixture
 Création des fixtures pour les catégories.
 

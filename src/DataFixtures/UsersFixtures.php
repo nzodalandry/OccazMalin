@@ -53,6 +53,7 @@ class UsersFixtures extends Fixture implements OrderedFixtureInterface
             $user->setPassword( $password );
             $user->setLanguage( $value['language'] );
             $user->setBirthday( new \DateTime() );
+            // $user->setRoles(['ADMIN']);
             $user->setIsActive( true );
 
             $this->addReference($value['email'] , $user);
