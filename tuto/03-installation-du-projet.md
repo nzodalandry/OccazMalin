@@ -38,7 +38,7 @@ composer require security
 composer require symfony/translation
 composer require encore
 composer require claviska/simpleimage
-composer require gedmo/doctrine-extensions
+composer require stof/doctrine-extensions-bundle
 composer require ramsey/uuid-doctrine
 ```
 
