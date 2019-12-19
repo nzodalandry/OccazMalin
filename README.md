@@ -8,22 +8,24 @@
 
 #### 1.1.1 Users
 
-- id                            : uuid          : char(36)
-- email                         : string 180    : varchar(180)
-- password                      : string 255    : varchar(255)
-- roles                         : json          : longtext/json
-- firstname                     : string 40     : varchar(40)
-- lastname                      : string 40     : varchar(40)
-- screenname                    : string 40     : varchar(40)
-- phone                         : string 20     : varchar(20)
-- birthday                      : datetime      : datetime
-- language                      : string 2      : char(2)
-- isActive                      : boolean       : tinyint(1)
-- activationToken               : string 255    : varchar(255)
-- passwordToken                 : string 255    : varchar(255)
-- passwordTokenExpiration       : datetime      : datetime
-- picture                       : ManyToOne     : int(11)
-- address                       : ManyToOne     : int(11)
+| Propriété                 | Typage Symfony    | Typage SQL    | Null ?    | Défaut    |
+|---------------------------|-------------------|---------------|-----------|-----------|
+| id                        | uuid              | char(36)      |           |           |
+| email                     | string 180        | varchar(180)  |           |           |
+| password                  | string 255        | varchar(255)  |           |           |
+| roles                     | json              | longtext/json |           |           |
+| firstname                 | string 40         | varchar(40)   |           |           |
+| lastname                  | string 40         | varchar(40)   |           |           |
+| screenname                | string 40         | varchar(40)   |           |           |
+| phone                     | string 20         | varchar(20)   |           |           |
+| birthday                  | datetime          | datetime      |           |           |
+| language                  | string 2          | char(2)       |           |           |
+| isActive                  | boolean           | tinyint(1)    |           |           |
+| activationToken           | string 255        | varchar(255)  |           |           |
+| passwordToken             | string 255        | varchar(255)  |           |           |
+| passwordTokenExpiration   | datetime          | datetime      |           |           |
+| picture                   | ManyToOne         | int(11)       |           |           |
+| address                   | ManyToOne         | int(11)       |           |           |
 
 #### 1.1.2 Ads 
 

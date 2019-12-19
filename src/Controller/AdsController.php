@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Ads;
+use App\Form\AdType;
 use App\Repository\AdsRepository;
 use App\Services\LanguagesService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @Route("/ad", name="ads")
@@ -28,7 +32,7 @@ class AdsController extends AbstractController
     /**
      * @Route("", name=":create", methods={"HEAD","GET","POST"})
      */
-    public function create()
+    public function create(Request $request, ValidatorInterface $validator): Response
     {
         // 1. Check authenticated user
         // --
@@ -41,14 +45,55 @@ class AdsController extends AbstractController
             return $this->redirectToRoute('login');
         }
 
-
-        // 2. Create Form
+        // 2. Check user address
         // --
 
+        dd($user->getAddress());
+
+        // 2. Retrieve Entities
+        // --
+
+        $ad = new Ads;
 
 
+        // 3. Create Form
+        // --
+
+        // Init the form $errors array
+        $errors = [];
+
+        // Create new form based on the Ad Entity
+        $form = $this->createForm(AdType::class, $ad);
+
+        // Handle the Request (request method === post)
+        $form->handleRequest($request);
+
+        // On form submit
+        if ($form->isSubmitted()) 
+        {
+            // Handle form errors
+            $errors = $validator->validate($ad);
+
+            // If the form is valid
+            if ($form->isValid()) 
+            {
+                $em = $this->getDoctrine()->getManager();
+
+                // Set properties not defined by the form
+                $ad->setLanguage( $user->getLanguage() );
+                $ad->setCreatedBy( $user );
+
+                $em->persist($ad);
+                $em->flush();
+            }
+        }
+
+        // Create the form view
+        $form = $form->createView();
 
         return $this->render('ads/create.html.twig', [
+            'form' => $form,
+            'errors' => $errors,
         ]);
     }
 
