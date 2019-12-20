@@ -77,7 +77,7 @@ class Ads
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="ads")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $createdBy;
 
@@ -88,7 +88,7 @@ class Ads
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Addresses")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Addresses", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $location;

@@ -17,7 +17,7 @@ class AddressType extends AbstractType
             
             /* Primary address field */
             ->add('address', TextType::class, [
-                'label' => "xxx",
+                'label' => "Address",
                 'help' => "xxx",
                 
                 'required' => true,
@@ -36,7 +36,7 @@ class AddressType extends AbstractType
             
             /* Secondary address field */
             ->add('additional', TextType::class, [
-                'label' => "xxx",
+                'label' => "Additional",
                 'help' => "xxx",
                 
                 'required' => true,
@@ -55,7 +55,7 @@ class AddressType extends AbstractType
             
             /* Postal code */
             ->add('postalcode', TextType::class, [
-                'label' => "xxx",
+                'label' => "Postal Code",
                 'help' => "xxx",
                 
                 'required' => true,
@@ -74,7 +74,7 @@ class AddressType extends AbstractType
             
             /* City */
             ->add('city', TextType::class, [
-                'label' => "xxx",
+                'label' => "City",
                 'help' => "xxx",
                 
                 'required' => true,
@@ -93,7 +93,7 @@ class AddressType extends AbstractType
             
             /* Region */
             ->add('region', TextType::class, [
-                'label' => "xxx",
+                'label' => "Region",
                 'help' => "xxx",
                 
                 'required' => true,
@@ -112,7 +112,7 @@ class AddressType extends AbstractType
             
             /* Country */
             ->add('country', CountryType::class, [
-                'label' => "xxx",
+                'label' => "Country",
                 'help' => "xxx",
                 
                 'required' => true,

@@ -1,3 +1,70 @@
 {{ form_start(form, {'attr': {'novalidate': "novalidate"}}) }}
 
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-object-tab" data-toggle="tab" href="#nav-object" role="tab" aria-controls="nav-object" aria-selected="true">Object</a>
+        <a class="nav-item nav-link" id="nav-location-tab" data-toggle="tab" href="#nav-location" role="tab" aria-controls="nav-location" aria-selected="false">Location</a>
+    </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-object" role="tabpanel" aria-labelledby="nav-object-tab">
+
+        <div class="form-group">
+            {{ form_label(form.title) }}
+            {{ form_errors(form.title) }}
+            {{ form_widget(form.title) }}
+            {# {{ form_help(form.title) }} #}
+        </div>
+        
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    {{ form_label(form.category) }}
+                    {{ form_errors(form.category) }}
+                    {{ form_widget(form.category) }}
+                    {# {{ form_help(form.category) }} #}
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    {{ form_label(form.state) }}
+                    {{ form_errors(form.state) }}
+                    {{ form_widget(form.state) }}
+                    {# {{ form_help(form.state) }} #}
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.description) }}
+            {{ form_errors(form.description) }}
+            {{ form_widget(form.description) }}
+            {# {{ form_help(form.description) }} #}
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.price) }}
+            {{ form_errors(form.price) }}
+            {{ form_widget(form.price) }}
+            {# {{ form_help(form.price) }} #}
+        </div>
+        
+    </div>
+    <div class="tab-pane fade" id="nav-location" role="tabpanel" aria-labelledby="nav-location-tab">
+
+        <div class="form-group">
+            {{ form_label(form.location) }}
+            {{ form_errors(form.location) }}
+            {{ form_widget(form.location) }}
+            {# {{ form_help(form.location) }} #}
+        </div>
+
+    </div>
+</div>
+
+<div class="text-right">
+    <button type="submit" class="btn btn-sencondary">Add new ad</button>
+</div>
+
 {{ form_end(form)}}

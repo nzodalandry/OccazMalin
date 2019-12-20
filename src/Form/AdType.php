@@ -3,7 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Ads;
-use App\Form\Enum\AdsStateEnum;
+use App\Entity\Categories;
+use App\Enum\AdsStateEnum;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -97,9 +100,22 @@ class AdType extends AbstractType
             ])
             
             /* Ad Category */            
-            ->add('category', ChoiceType::class, [
+            ->add('category', EntityType::class, [
                 'label' => "Category",
-                'help' => "xxx",
+                // 'help' => "xxx",
+                'class' => Categories::class,
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('t1')
+                        ->orderBy('t1.name', 'ASC')
+                    ;
+                },
+                // 'choice_label' => 'name',
+                'choice_label' => function($myCategList){
+                    $label = $myCategList->getName()." ";
+                    $label.= $myCategList->getColor();
+
+                    return $label;
+                },
                 
                 'required' => true,
 
