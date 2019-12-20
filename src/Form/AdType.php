@@ -82,8 +82,7 @@ class AdType extends AbstractType
             ->add('state', ChoiceType::class, [
                 'label' => "Object state",
                 'help' => "xxx",
-
-                'choices' => array_flip(AdsStateEnum::getAvailableStates()),
+                'choices' => AdsStateEnum::getAll(true),
                 
                 'required' => true,
 
