@@ -3,7 +3,7 @@ namespace App\Enum;
 
 use App\Interfaces\EnumInterface;
 
-abstract class AdsStateEnum implements EnumInterface
+abstract class AdsStatesEnum implements EnumInterface
 {
     /**
      * Enum Keys

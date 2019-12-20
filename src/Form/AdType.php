@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Ads;
 use App\Entity\Categories;
-use App\Enum\AdsStateEnum;
+use App\Enum\AdsStatesEnum;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -82,7 +82,7 @@ class AdType extends AbstractType
             ->add('state', ChoiceType::class, [
                 'label' => "Object state",
                 'help' => "xxx",
-                'choices' => AdsStateEnum::getAll(true),
+                'choices' => AdsStatesEnum::getAll(true),
                 
                 'required' => true,
 
