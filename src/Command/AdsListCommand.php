@@ -48,17 +48,25 @@ class AdsListCommand extends Command
         $format = $input->getArgument('format');
 
         // Check the format
+        // -- 
+
         if (!in_array($format, self::VALID_FORMATS))
         {
             $io->error("Not valid format. Expected : ".implode(", ", self::VALID_FORMATS));
             return 0;
         }
 
-        // Compile Columns option
+
+        // Compile Columns
+        // --
+
+        // Get data
         $ads = $this->ads->findAll();
 
+        // Define file data
         $file = [];
 
+        // Define file rows
         foreach ($ads as $ad)
         {
             $cols = [];
@@ -82,7 +90,9 @@ class AdsListCommand extends Command
         }
 
 
-        // Compile file format
+        // Compile file with correct format
+        // --
+
         switch ($format)
         {
             case 'json':
@@ -118,6 +128,9 @@ class AdsListCommand extends Command
                 break;
         }
 
+        // Output
+        // --
+        
         // Create file
         $this->fs->dumpFile(
             $this->kernel->getProjectDir()."/public/data/ads.".$format, 
