@@ -13,7 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * @Route("/ad", name="ads")
+ * @Route(
+ *  "/{_locale}/ad", 
+ *  name="ads", 
+ *  defaults={"_locale": "en"}, 
+ *  requirements={"_locale": "en|fr"}
+ * )
  */
 class AdsController extends AbstractController
 {

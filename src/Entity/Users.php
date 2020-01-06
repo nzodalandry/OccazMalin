@@ -114,7 +114,7 @@ class Users implements UserInterface
     private $favorites;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Medias", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Medias")
      */
     private $picture;
 

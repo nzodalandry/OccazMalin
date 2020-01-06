@@ -4,14 +4,15 @@ namespace App\Controller;
 
 use App\Services\LanguagesService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomepageController extends AbstractController
 {
     /**
-     * @Route("/", name="homepage", methods={"HEAD","GET"})
+     * @Route("/{_locale}", name="homepage", methods={"HEAD","GET"}, defaults={"_locale": "en"}, requirements={"_locale": "en|fr"})
      */
-    public function index(LanguagesService $languages)
+    public function index(Request $request, LanguagesService $languages)
     {
         // dump( "getAcceptedLanguages", $languages->getAcceptedLanguages() );
         // dump( "getMainLanguage", $languages->getMainLanguage() );
@@ -19,7 +20,9 @@ class HomepageController extends AbstractController
         // dump( "getMainRegion", $languages->getMainRegion() );
         // exit;
 
-        return $this->redirectToRoute('ads:index');
+        $locale = $request->getLocale();
+
+        return $this->redirectToRoute('ads:index', ['_locale' => "en"]);
     }
     /**
      * @Route("/contact", name="contact", methods={"HEAD","GET","POST"})
